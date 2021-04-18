@@ -23,12 +23,3 @@ else
 	   ${DOCKER_BUILD_IMAGE}                                                                          \
 	   /bin/bash
 fi
-
-	   # --network="host"                                                                               \
-	   # --workdir ${PWD}                                                                               \
-	   # --volume ${SSH_AUTH_SOCK}:${CONTAINER_HOME}/ssh-agent.socket                                   \
-	   # --env SSH_AUTH_SOCK=${CONTAINER_HOME}/ssh-agent.socket                                         \
-	   # --volume ${HOME}/.ssh/known_hosts:${CONTAINER_HOME}/.ssh/known_hosts:ro                        \
-	   # --volume ${PWD}:${CONTAINER_HOME}/src:rw                                                       \
-	   # ${DOCKER_BUILD_IMAGE}:${IMAGE_VERSION}                                                         \
-	   # /bin/bash
