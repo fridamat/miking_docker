@@ -3,8 +3,9 @@ FROM ocaml/opam:ubuntu
 RUN sudo apt-get update
 RUN sudo apt-get install -y \
     jbuilder \
-    linux-tools-common \
-    iputils-ping
+    iputils-ping \
+    flex \
+    bison
    
 
 ENV OPAMYES=1
@@ -27,6 +28,10 @@ RUN opam depext -iy core async ppx_sexp_conv ppx_deriving jbuilder \
 
 # Install specific opam packages
 RUN opam install batteries
+
+RUN git clone --depth 1 -b git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git /home/opam/linux
+RUN /home/opam/linux && git checkout $(uname -r | sed 's/^\(.*\..*\)[\.-].*$/v\1/')
+RUN cd /home/opam/linux/tools/perf && make -j9 && sudo cp perf /usr/bin
 
 #install pandoc
 # WORKDIR /tmp

@@ -14,7 +14,7 @@ then
 	   -t ${DOCKER_BUILD_IMAGE}:${IMAGE_VERSION} \
 	   .
 else
-    docker run --tty --interactive --rm                                             \
+    docker run --privileged --tty --interactive --rm                                \
 	   --network="host"                                                         \
 	   --volume ${SSH_AUTH_SOCK}:${CONTAINER_HOME}/ssh-agent.socket             \
 	   --env SSH_AUTH_SOCK=${CONTAINER_HOME}/ssh-agent.socket                   \
